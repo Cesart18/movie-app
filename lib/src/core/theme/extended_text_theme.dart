@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:movie_app/src/core/ui/variables/values/color_values.dart';
-import 'package:movie_app/src/core/ui/variables/values/text_values.dart';
+import 'package:movie_app/src/core/variables/values/color_values.dart';
+import 'package:movie_app/src/core/variables/values/text_values.dart';
 
 extension ExtendedTextTheme on TextTheme {
   static TextStyle displayTwoExtraLarge(BuildContext context) =>

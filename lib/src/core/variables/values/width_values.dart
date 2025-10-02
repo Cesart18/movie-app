@@ -1,4 +1,4 @@
-part 'package:movie_app/src/core/ui/variables/constants/width_constants.dart';
+part 'package:movie_app/src/core/variables/constants/width_constants.dart';
 
 class WidthValues {
   // ---------------------------------------------------

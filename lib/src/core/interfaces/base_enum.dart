@@ -90,3 +90,25 @@ extension BaseEnumExtension<E, V> on Iterable<BaseEnum<E, V>> {
 /// }
 /// ```
 mixin BaseEnumMixin<E, V> on Enum implements BaseEnum<E, V> {}
+
+/// Use case with parameters
+/// Example:
+/// ```dart
+/// abstract class UseCaseWithParams<Params, Result> {
+///   Future<Result> execute(Params params);
+/// }
+/// ```
+abstract class UseCaseWithParams<T, Params> {
+  Future<T> execute(Params params);
+}
+
+/// Use case without parameters
+/// Example:
+/// ```dart
+/// abstract class UseCaseWithoutParams<Result> {
+///   Future<Result> execute();
+/// }
+/// ```
+abstract class UseCaseWithoutParams<T> {
+  Future<T> execute();
+}
