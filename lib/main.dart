@@ -1,5 +1,5 @@
-import 'package:movie_app/src/core/ui.dart';
+import 'package:movie_app/src/core/ui/ui.dart';
 
-import 'src/app.dart';
+import 'app.dart';
 
 void main() => runApp(const App());

@@ -1,4 +1,4 @@
-part of 'package:movie_app/src/core/variables/values/color_values.dart';
+part of 'package:movie_app/src/core/ui/variables/values/color_values.dart';
 
 /// This contants class was generated with Mason. You can use it to define your
 /// color palette for your app. Please remember to fill the values with your

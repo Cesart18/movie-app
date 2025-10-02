@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/src/core/theme/extended_text_theme.dart';
-import 'package:movie_app/src/core/variables/values/color_values.dart';
-import 'package:movie_app/src/core/variables/values/text_values.dart';
-import 'package:movie_app/src/core/variables/values/width_values.dart';
+import 'package:movie_app/src/core/ui/theme/extended_text_theme.dart';
+import 'package:movie_app/src/core/ui/variables/values/color_values.dart';
+import 'package:movie_app/src/core/ui/variables/values/text_values.dart';
+import 'package:movie_app/src/core/ui/variables/values/width_values.dart';
 
 class AppTheme {
   static ThemeData theme(BuildContext context) {

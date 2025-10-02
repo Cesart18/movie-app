@@ -3,3 +3,5 @@ export 'theme/app_theme.dart';
 export 'variables/values/width_values.dart';
 export 'variables/values/color_values.dart';
 export 'variables/values/text_values.dart';
+export '../blocs/blocs.dart';
+export 'general/general.dart';
