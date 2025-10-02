@@ -20,6 +20,13 @@ enum TimeWindowTypeModel implements BaseEnum<TimeWindowType, String> {
     }
   }
 
+  static TimeWindowTypeModel? fromEntity(TimeWindowType entity) {
+    return TimeWindowTypeModel.values.firstWhere(
+      (e) => e.toEntity() == entity,
+      orElse: () => TimeWindowTypeModel.day,
+    );
+  }
+
   static TimeWindowTypeModel? fromValue(String value) {
     return TimeWindowTypeModel.values
             .cast<BaseEnum<TimeWindowType, String>>()

@@ -1,4 +1,3 @@
-import 'package:movie_app/src/core/foundation.dart';
 import 'package:movie_app/src/domain/entities/entities.dart';
 
 class GetMovieVideosRequestModel extends GetMovieVideosParams {
@@ -8,5 +7,5 @@ class GetMovieVideosRequestModel extends GetMovieVideosParams {
     return GetMovieVideosRequestModel(movieId: params.movieId);
   }
 
-  DataMap toMap() => {'movie_id': movieId};
+  int toPathParameters() => movieId;
 }

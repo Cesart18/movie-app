@@ -1,4 +1,4 @@
-import 'package:movie_app/src/core/ui/ui.dart';
+import 'package:movie_app/src/core/ui.dart';
 
 import 'app.dart';
 

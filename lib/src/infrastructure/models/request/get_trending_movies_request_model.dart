@@ -1,5 +1,5 @@
-import 'package:movie_app/src/core/foundation.dart';
 import 'package:movie_app/src/domain/entities/entities.dart';
+import 'package:movie_app/src/infrastructure/models/enums/enums.dart';
 
 class GetTrendingMoviesRequestModel extends GetTrendingMoviesParams {
   GetTrendingMoviesRequestModel({required super.timeWindow});
@@ -10,5 +10,7 @@ class GetTrendingMoviesRequestModel extends GetTrendingMoviesParams {
     return GetTrendingMoviesRequestModel(timeWindow: params.timeWindow);
   }
 
-  DataMap toMap() => {'time_window': timeWindow.name};
+  /// Devuelve los parámetros para el path de la API
+  String toPathParameters() =>
+      TimeWindowTypeModel.fromEntity(timeWindow)?.value ?? '';
 }

@@ -1,1 +1,1 @@
-typedef DataMap = Map<String, dynamic>;
+export 'data_map.dart';

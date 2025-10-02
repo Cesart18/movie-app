@@ -1,5 +1,5 @@
 import 'package:movie_app/src/core/foundation.dart';
-import 'package:movie_app/src/core/ui/ui.dart';
+import 'package:movie_app/src/core/ui.dart';
 
 import 'src/core/routes/router.dart';
 
