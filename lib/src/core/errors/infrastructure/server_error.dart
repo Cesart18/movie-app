@@ -1,7 +1,9 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:movie_app/src/core/foundation.dart';
 
 /// {@template server_error}
-/// Error que ocurre en la capa de infraestructura (HTTP, dio, etc.)
+/// Error that occurs in the infrastructure layer (HTTP, Dio, etc.)
 /// {@endtemplate}
 class ServerError extends BaseError {
   const ServerError({
@@ -10,13 +12,13 @@ class ServerError extends BaseError {
     this.type = ServerErrorType.unknown,
   });
 
-  /// Código de estado HTTP (si aplica)
+  /// HTTP status code (when applicable)
   final int? statusCode;
 
-  /// Mensaje de error del servidor
+  /// Error message returned by the server
   final String? message;
 
-  /// Tipo de error del servidor
+  /// Type of server error
   final ServerErrorType type;
 
   @override
@@ -25,26 +27,26 @@ class ServerError extends BaseError {
   }
 }
 
-/// Tipos de errores del servidor
+/// Server error types
 enum ServerErrorType {
-  /// Error de red/conexión
+  /// Network/connection error
   network,
 
   /// Timeout
   timeout,
 
-  /// Error del servidor (5xx)
+  /// Server error (5xx)
   server,
 
-  /// No autorizado (401)
+  /// Unauthorized (401)
   unauthorized,
 
-  /// No encontrado (404)
+  /// Not found (404)
   notFound,
 
-  /// Error de validación (400)
+  /// Validation error (400)
   badRequest,
 
-  /// Error desconocido
+  /// Unknown error
   unknown,
 }

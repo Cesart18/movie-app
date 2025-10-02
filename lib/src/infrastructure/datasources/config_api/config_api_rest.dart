@@ -5,16 +5,17 @@ import 'package:movie_app/src/infrastructure/datasources/datasources.dart';
 import 'package:movie_app/src/infrastructure/models/dto/dto.dart';
 
 class ConfigApiRest implements IConfigApi {
-  final HttpManager _client;
-
   ConfigApiRest({required HttpManager client}) : _client = client;
+  final HttpManager _client;
 
   @override
   Future<Result<List<Language>, ServerError>> getAvailableLanguages() async {
     try {
-      final response = await _client.get(ConfigApiRestEndpoints.getLanguages);
+      final response = await _client.get<List<dynamic>>(
+        ConfigApiRestEndpoints.getLanguages,
+      );
 
-      final data = response.data as List<dynamic>;
+      final data = response.data ?? [];
 
       final langs = data
           .map((l) => LanguageDtoModel.fromMap(l as DataMap? ?? {}))
@@ -22,9 +23,7 @@ class ConfigApiRest implements IConfigApi {
 
       return Success(langs);
     } catch (e) {
-      return Failure(
-        ServerError(message: e.toString(), type: ServerErrorType.unknown),
-      );
+      return Failure(ServerError(message: e.toString()));
     }
   }
 }

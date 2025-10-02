@@ -4,9 +4,8 @@ import 'package:movie_app/src/domain/repositories/repositories.dart';
 import 'package:movie_app/src/infrastructure/datasources/datasources.dart';
 
 class MovieRepository implements IMovieRepository {
-  final IMovieApi _movieApi;
-
   MovieRepository({required IMovieApi movieApi}) : _movieApi = movieApi;
+  final IMovieApi _movieApi;
 
   @override
   Future<Result<MovieDetails, AppError>> getMovieDetails(

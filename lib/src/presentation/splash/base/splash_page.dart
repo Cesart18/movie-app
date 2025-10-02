@@ -1,7 +1,7 @@
-import 'package:movie_app/src/core/foundation.dart';
-import 'package:movie_app/src/core/ui.dart';
 // ignore: unused_import
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:movie_app/src/core/foundation.dart';
+import 'package:movie_app/src/core/ui.dart';
 
 part 'package:movie_app/src/presentation/splash/base/splash_body.dart';
 

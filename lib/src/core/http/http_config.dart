@@ -1,15 +1,9 @@
 import 'package:dio/dio.dart';
 
 /// {@template http_config}
-/// Configuración para HttpManager
+/// Configuration for HttpManager
 /// {@endtemplate}
 class HttpConfig {
-  final String baseUrl;
-  final String apiKey;
-  final Duration connectTimeout;
-  final Duration receiveTimeout;
-  final Map<String, dynamic> headers;
-
   const HttpConfig({
     required this.baseUrl,
     required this.apiKey,
@@ -17,8 +11,13 @@ class HttpConfig {
     this.receiveTimeout = const Duration(seconds: 30),
     this.headers = const {},
   });
+  final String baseUrl;
+  final String apiKey;
+  final Duration connectTimeout;
+  final Duration receiveTimeout;
+  final Map<String, dynamic> headers;
 
-  /// Crea las BaseOptions para Dio
+  /// Creates the BaseOptions for Dio
   BaseOptions toBaseOptions() {
     return BaseOptions(
       baseUrl: baseUrl,

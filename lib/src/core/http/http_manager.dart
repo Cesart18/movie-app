@@ -1,21 +1,20 @@
+// ignore_for_file: only_throw_errors
+
 import 'package:dio/dio.dart';
 import 'package:movie_app/src/core/http/error_handler.dart';
 import 'package:movie_app/src/core/http/http_config.dart';
 
 /// {@template http_manager}
-/// Manager para realizar peticiones HTTP usando Dio.
-/// Proporciona una interfaz simplificada para todas las operaciones HTTP.
+/// Manager for performing HTTP requests using Dio.
+/// Provides a simplified interface for all HTTP operations.
 /// {@endtemplate}
 class HttpManager {
-  final Dio _dio;
-  final ErrorHandler _errorHandler;
-
   /// {@macro http_manager}
   HttpManager(HttpConfig config, {ErrorHandler? errorHandler})
     : _dio = Dio(config.toBaseOptions()),
       _errorHandler = errorHandler ?? const ErrorHandler();
 
-  /// Constructor alternativo con parámetros básicos
+  /// Alternative constructor with basic parameters
   factory HttpManager.simple({
     required String baseUrl,
     required String apiKey,
@@ -33,11 +32,13 @@ class HttpManager {
       ),
     );
   }
+  final Dio _dio;
+  final ErrorHandler _errorHandler;
 
-  /// Instancia de Dio (acceso público para casos avanzados)
+  /// Dio instance (public access for advanced scenarios)
   Dio get dio => _dio;
 
-  /// Ejecuta una petición HTTP de forma segura
+  /// Executes an HTTP request safely
   Future<Response<T>> _execute<T>(
     Future<Response<T>> Function() request,
   ) async {
@@ -48,7 +49,7 @@ class HttpManager {
     }
   }
 
-  /// Realiza una petición GET
+  /// Performs a GET request
   Future<Response<T>> get<T>(
     String path, {
     Map<String, dynamic>? queryParameters,
@@ -65,7 +66,7 @@ class HttpManager {
     ),
   );
 
-  /// Realiza una petición POST
+  /// Performs a POST request
   Future<Response<T>> post<T>(
     String path, {
     dynamic data,
@@ -86,7 +87,7 @@ class HttpManager {
     ),
   );
 
-  /// Realiza una petición PUT
+  /// Performs a PUT request
   Future<Response<T>> put<T>(
     String path, {
     dynamic data,
@@ -107,7 +108,7 @@ class HttpManager {
     ),
   );
 
-  /// Realiza una petición PATCH
+  /// Performs a PATCH request
   Future<Response<T>> patch<T>(
     String path, {
     dynamic data,
@@ -128,7 +129,7 @@ class HttpManager {
     ),
   );
 
-  /// Realiza una petición DELETE
+  /// Performs a DELETE request
   Future<Response<T>> delete<T>(
     String path, {
     dynamic data,
@@ -145,7 +146,7 @@ class HttpManager {
     ),
   );
 
-  /// Realiza una petición HEAD
+  /// Performs a HEAD request
   Future<Response<T>> head<T>(
     String path, {
     Map<String, dynamic>? queryParameters,
@@ -160,30 +161,7 @@ class HttpManager {
     ),
   );
 
-  /// Descarga un archivo
-  Future<Response> download(
-    String urlPath,
-    dynamic savePath, {
-    ProgressCallback? onReceiveProgress,
-    Map<String, dynamic>? queryParameters,
-    CancelToken? cancelToken,
-    bool deleteOnError = true,
-    String lengthHeader = Headers.contentLengthHeader,
-    Options? options,
-  }) => _execute(
-    () => _dio.download(
-      urlPath,
-      savePath,
-      onReceiveProgress: onReceiveProgress,
-      queryParameters: queryParameters,
-      cancelToken: cancelToken,
-      deleteOnError: deleteOnError,
-      lengthHeader: lengthHeader,
-      options: options,
-    ),
-  );
-
-  /// Actualiza headers personalizados
+  /// Updates custom headers
   void updateHeaders(Map<String, dynamic> headers) {
     _dio.options.headers.addAll(headers);
   }

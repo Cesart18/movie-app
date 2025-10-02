@@ -8,10 +8,9 @@ class GetMovieDetailsUseCase
           Result<MovieDetails, AppError>,
           GetMovieDetailsParams
         > {
-  final IMovieRepository _movieRepository;
-
   GetMovieDetailsUseCase({required IMovieRepository movieRepository})
     : _movieRepository = movieRepository;
+  final IMovieRepository _movieRepository;
   @override
   Future<Result<MovieDetails, AppError>> execute(
     GetMovieDetailsParams params,

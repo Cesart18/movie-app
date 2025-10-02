@@ -1,2 +1,2 @@
-export 'config/config.dart';
+export 'configuration/configuration.dart';
 export 'movie/movie.dart';

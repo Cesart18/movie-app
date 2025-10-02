@@ -10,7 +10,7 @@ class GetTrendingMoviesRequestModel extends GetTrendingMoviesParams {
     return GetTrendingMoviesRequestModel(timeWindow: params.timeWindow);
   }
 
-  /// Devuelve los parámetros para el path de la API
+  /// Returns the path parameters for the API
   String toPathParameters() =>
       TimeWindowTypeModel.fromEntity(timeWindow)?.value ?? '';
 }
