@@ -22,13 +22,18 @@ class _MovieCard extends StatelessWidget {
         borderRadius: 8,
       );
     }
-    return Container(
-      width: cardWidth,
-      height: cardHeight,
-      clipBehavior: Clip.hardEdge,
-      margin: EdgeInsets.only(right: WidthValues.spacingLg),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-      child: CachedNetworkImageAdapter(imageUrl: movie.posterPath),
+    return GestureDetector(
+      onTap: () {
+        MovieDetailsPage.pushRoute(context, movie.id);
+      },
+      child: Container(
+        width: cardWidth,
+        height: cardHeight,
+        clipBehavior: Clip.hardEdge,
+        margin: EdgeInsets.only(right: WidthValues.spacingLg),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+        child: CachedNetworkImageAdapter(imageUrl: movie.posterPath),
+      ),
     );
   }
 }

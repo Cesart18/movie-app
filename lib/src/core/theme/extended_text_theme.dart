@@ -35,7 +35,7 @@ extension ExtendedTextTheme on TextTheme {
   static TextStyle displaySmall(BuildContext context) =>
       TextValues.fontFamilyStyle(
         fontSize: TextValues.displaySm,
-        fontWeight: TextValues.regular,
+        fontWeight: TextValues.bold,
         color: ColorValues.textPrimary(context),
       );
 

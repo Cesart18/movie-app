@@ -121,5 +121,6 @@ class _CustomThemeValues {
       context,
     ).copyWith(fontWeight: TextValues.bold),
     actionsIconTheme: IconThemeData(color: ColorValues.textPrimary(context)),
+    foregroundColor: ColorValues.textPrimary(context),
   );
 }

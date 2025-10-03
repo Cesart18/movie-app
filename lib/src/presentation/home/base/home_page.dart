@@ -2,6 +2,7 @@ import 'package:movie_app/src/adapters/adapters.dart';
 import 'package:movie_app/src/core/foundation.dart';
 import 'package:movie_app/src/core/ui.dart';
 import 'package:movie_app/src/domain/entities/entities.dart';
+import 'package:movie_app/src/presentation/movie_details/movie_details.dart';
 
 part 'package:movie_app/src/presentation/home/base/home_body.dart';
 
