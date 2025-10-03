@@ -19,6 +19,9 @@ part '../widgets/movie_filters.dart';
 part 'listeners/upcoming_movie_listener.dart';
 part 'listeners/trending_movie_listener.dart';
 
+part 'listeners/upcoming_movie_listener.dart';
+part 'listeners/trending_movie_listener.dart';
+
 /// {@template home_page}
 /// A description for HomePage
 /// {@endtemplate}
