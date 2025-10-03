@@ -18,9 +18,6 @@ void main() async {
   runApp(
     App(
       config: Config(
-        configRepository: ConfigRepository(
-          configApi: ConfigApiRest(client: httpClient),
-        ),
         movieRepository: MovieRepository(
           movieApi: MovieApiRest(client: httpClient),
         ),
