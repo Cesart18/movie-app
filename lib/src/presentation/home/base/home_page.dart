@@ -1,12 +1,21 @@
 import 'package:movie_app/src/adapters/adapters.dart';
+import 'package:movie_app/src/core/foundation.dart';
 import 'package:movie_app/src/core/ui.dart';
 import 'package:movie_app/src/domain/entities/entities.dart';
 
 part 'package:movie_app/src/presentation/home/base/home_body.dart';
+
+part '../bloc/language_filter_bloc.dart';
+part '../bloc/language_filter_event.dart';
+part '../bloc/language_filter_state.dart';
+
 part '../widgets/sections/upcoming_section.dart';
 part '../widgets/sections/trending_section.dart';
 part '../widgets/sections/recommended_section.dart';
 part '../widgets/movie_card.dart';
+
+part 'listeners/upcoming_movie_listener.dart';
+part 'listeners/trending_movie_listener.dart';
 
 /// {@template home_page}
 /// A description for HomePage
@@ -43,6 +52,12 @@ class _HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _HomeBody();
+    return BlocProvider(
+      create: (context) => _LanguageFilterBloc(),
+      child: MultiBlocListener(
+        listeners: [_UpcomingMovieListener(), _TrendingMovieListener()],
+        child: const _HomeBody(),
+      ),
+    );
   }
 }

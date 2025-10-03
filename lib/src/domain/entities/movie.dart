@@ -6,6 +6,15 @@ class Movie {
     required this.releaseDate,
     required this.originalLanguage,
   });
+  factory Movie.empty() {
+    return const Movie(
+      id: 0,
+      posterPath: '',
+      backdropPath: '',
+      releaseDate: '',
+      originalLanguage: '',
+    );
+  }
   final int id;
   final String posterPath;
   final String backdropPath;

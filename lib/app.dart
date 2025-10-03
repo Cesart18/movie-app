@@ -11,7 +11,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiProvider(
       providers: _dependencies(config),
       child: MaterialApp.router(
         title: 'eMovie',
@@ -24,10 +24,8 @@ class App extends StatelessWidget {
 }
 
 List<SingleChildWidget> _dependencies(Config config) {
-  RepositoryProvider.value(value: config.configRepository);
-  RepositoryProvider.value(value: config.movieRepository);
-
   return [
+    RepositoryProvider.value(value: config.movieRepository),
     BlocProvider(create: (context) => SplashBloc()),
     BlocProvider(
       create: (context) => TrendingMoviesBloc(
