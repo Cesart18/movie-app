@@ -13,6 +13,7 @@ class TrendingMoviesBloc
   }) : _getTrendingMoviesUseCase = getTrendingMoviesUseCase,
        super(const TrendingMoviesState()) {
     on<TrendingMoviesRequested>(_onTrendingMoviesRequested);
+    on<TrendingMoviesFiltered>(_onTrendingMoviesFiltered);
     add(const TrendingMoviesRequested());
   }
 
@@ -39,7 +40,40 @@ class TrendingMoviesBloc
     }
 
     emit(
-      state.copyWith(status: TrendingMoviesStatus.success, movies: result.data),
+      state.copyWith(
+        status: TrendingMoviesStatus.success,
+        movies: result.data,
+        filteredMovies: result.data,
+      ),
+    );
+  }
+
+  void _onTrendingMoviesFiltered(
+    TrendingMoviesFiltered event,
+    Emitter<TrendingMoviesState> emit,
+  ) {
+    final filtered = state.movies.where((movie) {
+      // Filtro de idioma
+      final matchesLanguage =
+          event.language == null || movie.originalLanguage == event.language;
+
+      // Filtro de año
+      final movieYear = movie.releaseDate.isNotEmpty
+          ? DateTime.tryParse(movie.releaseDate)?.year
+          : null;
+      final matchesYear = event.year == null || movieYear == event.year;
+
+      return matchesLanguage && matchesYear;
+    }).toList();
+
+    emit(
+      state.copyWith(
+        filteredMovies: filtered,
+        selectedLanguage: event.language,
+        selectedYear: event.year,
+        clearLanguage: event.language == null,
+        clearYear: event.year == null,
+      ),
     );
   }
 }
