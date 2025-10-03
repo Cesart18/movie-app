@@ -14,6 +14,7 @@ part '../widgets/sections/upcoming_section.dart';
 part '../widgets/sections/trending_section.dart';
 part '../widgets/sections/recommended_section.dart';
 part '../widgets/movie_card.dart';
+part '../widgets/movie_filters.dart';
 
 part 'listeners/upcoming_movie_listener.dart';
 part 'listeners/trending_movie_listener.dart';

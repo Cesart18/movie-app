@@ -23,7 +23,10 @@ class _RecommendedSection extends StatelessWidget {
                   ),
                 )
               : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const _MovieFilters(),
+                    SizedBox(height: WidthValues.spacing2xl),
                     GridView.count(
                       shrinkWrap: true,
                       crossAxisCount: 2,
@@ -43,7 +46,7 @@ class _RecommendedSection extends StatelessWidget {
                             ),
                           )
                         else
-                          ...state.movies.map(
+                          ...state.filteredMovies.map(
                             (m) => _MovieCard(
                               movie: m,
                               cardWidth: cardWidth,
