@@ -1,4 +1,4 @@
-import 'package:movie_app/src/adapters/network_image/cached_network_image_adapter.dart';
+import 'package:movie_app/src/adapters/adapters.dart';
 import 'package:movie_app/src/core/foundation.dart';
 import 'package:movie_app/src/core/ui.dart';
 import 'package:movie_app/src/domain/entities/entities.dart';
@@ -39,13 +39,23 @@ class MovieDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => _MovieDetailsBloc(
-        movieId: movieId,
-        getMovieDetailsUseCase: GetMovieDetailsUseCase(
-          movieRepository: context.read(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => _MovieDetailsBloc(
+            movieId: movieId,
+            getMovieDetailsUseCase: GetMovieDetailsUseCase(
+              movieRepository: context.read(),
+            ),
+          ),
         ),
-      ),
+        BlocProvider(
+          create: (context) => MovieVideosBloc(
+            useCase: GetMovieVideosUseCase(movieRepository: context.read()),
+            movieId: movieId,
+          ),
+        ),
+      ],
       child: Scaffold(appBar: AppBar(), body: const _MovieDetailsView()),
     );
   }

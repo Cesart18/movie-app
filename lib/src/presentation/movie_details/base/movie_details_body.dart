@@ -61,7 +61,34 @@ class _MovieDetailsBody extends StatelessWidget {
 
                         _GenresWidget(movie: movie),
 
-                        const _WatchTrailerButton(),
+                        BlocBuilder<MovieVideosBloc, MovieVideosState>(
+                          buildWhen: (previous, current) => previous != current,
+                          builder: (context, state) {
+                            if (state.status.isLoading) {
+                              return const SizedBox(
+                                height: 60,
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            }
+
+                            if (state.status.isFailure) {
+                              return Text(
+                                state.errorMessage,
+                                style: ExtendedTextTheme.textMedium(
+                                  context,
+                                ).copyWith(color: Colors.red),
+                              );
+                            }
+                            if (state.videos.isEmpty) {
+                              return const SizedBox.shrink();
+                            }
+                            return _WatchTrailerButton(
+                              videoId: state.videos.first.key,
+                            );
+                          },
+                        ),
 
                         Text(
                           movie.overview,
