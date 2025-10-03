@@ -23,4 +23,8 @@ class MovieDetails {
   final int voteCount;
   final List<Language> spokenLanguages;
   final List<Genre> genres;
+
+  String get releaseYearDate => releaseDate.split('-').first;
+
+  Language get firstSpokenLanguage => spokenLanguages.first;
 }

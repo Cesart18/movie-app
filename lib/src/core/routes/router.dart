@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/src/presentation/home/home.dart';
+import 'package:movie_app/src/presentation/movie_details/movie_details.dart';
 import 'package:movie_app/src/presentation/splash/splash.dart';
 
 /// {@template app_router}
@@ -39,6 +40,15 @@ class AppRouter {
                   return FadeTransition(opacity: animation, child: child);
                 },
           );
+        },
+      ),
+
+      GoRoute(
+        name: MovieDetailsPage.routeName,
+        path: MovieDetailsPage.path,
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return MovieDetailsPage(movieId: int.parse(id));
         },
       ),
     ],

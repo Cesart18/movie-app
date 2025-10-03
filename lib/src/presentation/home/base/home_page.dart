@@ -2,6 +2,7 @@ import 'package:movie_app/src/adapters/adapters.dart';
 import 'package:movie_app/src/core/foundation.dart';
 import 'package:movie_app/src/core/ui.dart';
 import 'package:movie_app/src/domain/entities/entities.dart';
+import 'package:movie_app/src/presentation/movie_details/movie_details.dart';
 
 part 'package:movie_app/src/presentation/home/base/home_body.dart';
 
@@ -13,6 +14,10 @@ part '../widgets/sections/upcoming_section.dart';
 part '../widgets/sections/trending_section.dart';
 part '../widgets/sections/recommended_section.dart';
 part '../widgets/movie_card.dart';
+part '../widgets/movie_filters.dart';
+
+part 'listeners/upcoming_movie_listener.dart';
+part 'listeners/trending_movie_listener.dart';
 
 part 'listeners/upcoming_movie_listener.dart';
 part 'listeners/trending_movie_listener.dart';
