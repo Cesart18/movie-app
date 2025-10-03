@@ -17,7 +17,7 @@ class App extends StatelessWidget {
         title: 'eMovie',
         theme: AppTheme.theme(context),
         debugShowCheckedModeBanner: false,
-        routerConfig: AppRouter.router(),
+        routerConfig: AppRouter.router,
       ),
     );
   }

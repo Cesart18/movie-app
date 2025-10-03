@@ -1,9 +1,11 @@
 // ignore: unused_import
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:movie_app/src/core/foundation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_app/src/core/ui.dart';
+import 'package:movie_app/src/presentation/home/base/home_page.dart';
 
 part 'package:movie_app/src/presentation/splash/base/splash_body.dart';
+part 'listeners/splash_listener.dart';
 
 /// {@template splash_page}
 /// A description for SplashPage
@@ -38,6 +40,9 @@ class _SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _SplashBody();
+    return MultiBlocListener(
+      listeners: [_SplashListener()],
+      child: const _SplashBody(),
+    );
   }
 }

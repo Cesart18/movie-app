@@ -1,4 +1,5 @@
 import 'package:movie_app/src/core/foundation.dart';
+import 'package:movie_app/src/core/ui.dart';
 import 'package:movie_app/src/domain/entities/entities.dart';
 import 'package:movie_app/src/domain/use_cases/movie/movie.dart';
 

@@ -7,13 +7,12 @@ import 'package:movie_app/src/infrastructure/datasources/datasources.dart';
 import 'package:movie_app/src/infrastructure/repositories/repositories.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await dotenv.load();
 
   final httpClient = HttpManager(
-    HttpConfig(
-      baseUrl: dotenv.env[EnvKeys.apiUrl] ?? '',
-      apiKey: dotenv.env[EnvKeys.apiKey] ?? '',
-    ),
+    HttpConfig(baseUrl: EnvValues.apiUrl, apiKey: EnvValues.apiKey),
   );
 
   runApp(

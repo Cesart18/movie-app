@@ -72,6 +72,7 @@ class MovieApiRest implements IMovieApi {
 
       final movies = results
           .map((m) => MovieDtoModel.fromMap(m as DataMap? ?? {}))
+          .take(6)
           .toList();
 
       return Success(movies);
@@ -93,6 +94,7 @@ class MovieApiRest implements IMovieApi {
 
       final movies = results
           .map((m) => MovieDtoModel.fromMap(m as DataMap? ?? {}))
+          .take(6)
           .toList();
 
       return Success(movies);
