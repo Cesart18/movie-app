@@ -1,4 +1,5 @@
 export 'package:equatable/equatable.dart';
+export 'package:go_router/go_router.dart';
 export 'package:provider/provider.dart';
 export 'package:provider/single_child_widget.dart';
 
