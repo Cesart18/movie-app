@@ -44,3 +44,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 .env
+mason.yaml
+mason-lock.json
+bricks.json
