@@ -3,12 +3,11 @@ import 'package:movie_app/src/domain/entities/entities.dart';
 import 'package:movie_app/src/infrastructure/datasources/datasources.dart';
 import 'package:movie_app/src/infrastructure/datasources/movie_api/movie_api_rest_endpoints.dart';
 
-import '../../models/models.dart';
+import 'package:movie_app/src/infrastructure/models/models.dart';
 
 class MovieApiRest implements IMovieApi {
-  final HttpManager _client;
-
   MovieApiRest({required HttpManager client}) : _client = client;
+  final HttpManager _client;
 
   @override
   Future<Result<MovieDetails, ServerError>> getMovieDetails(
@@ -17,19 +16,17 @@ class MovieApiRest implements IMovieApi {
     final request = GetMovieDetailsRequestModel.fromEntity(params);
 
     try {
-      final response = await _client.get(
+      final response = await _client.get<DataMap>(
         MovieApiRestEndpoints.getMovieDetails(request.toPathParameters()),
       );
 
-      final data = response.data as DataMap? ?? {};
+      final data = response.data ?? {};
 
       final movieDetails = MovieDetailsDtoModel.fromMap(data);
 
       return Success(movieDetails);
     } catch (e) {
-      return Failure(
-        ServerError(message: e.toString(), type: ServerErrorType.unknown),
-      );
+      return Failure(ServerError(message: e.toString()));
     }
   }
 
@@ -40,11 +37,11 @@ class MovieApiRest implements IMovieApi {
     final request = GetMovieVideosRequestModel.fromEntity(params);
 
     try {
-      final response = await _client.get(
+      final response = await _client.get<DataMap>(
         MovieApiRestEndpoints.getMovieVideos(request.toPathParameters()),
       );
 
-      final data = response.data as DataMap? ?? {};
+      final data = response.data ?? {};
       final results =
           data[MovieApiRestConstants.results] as List<dynamic>? ?? [];
 
@@ -54,9 +51,7 @@ class MovieApiRest implements IMovieApi {
 
       return Success(videos);
     } catch (e) {
-      return Failure(
-        ServerError(message: e.toString(), type: ServerErrorType.unknown),
-      );
+      return Failure(ServerError(message: e.toString()));
     }
   }
 
@@ -67,11 +62,11 @@ class MovieApiRest implements IMovieApi {
     final request = GetTrendingMoviesRequestModel.fromEntity(params);
 
     try {
-      final response = await _client.get(
+      final response = await _client.get<DataMap>(
         MovieApiRestEndpoints.getTrendingMovies(request.toPathParameters()),
       );
 
-      final data = response.data as DataMap? ?? {};
+      final data = response.data ?? {};
       final results =
           data[MovieApiRestConstants.results] as List<dynamic>? ?? [];
 
@@ -81,20 +76,18 @@ class MovieApiRest implements IMovieApi {
 
       return Success(movies);
     } catch (e) {
-      return Failure(
-        ServerError(message: e.toString(), type: ServerErrorType.unknown),
-      );
+      return Failure(ServerError(message: e.toString()));
     }
   }
 
   @override
   Future<Result<List<Movie>, ServerError>> getUpcomingMovies() async {
     try {
-      final response = await _client.get(
+      final response = await _client.get<DataMap>(
         MovieApiRestEndpoints.getUpcomingMovies,
       );
 
-      final data = response.data as DataMap;
+      final data = response.data ?? {};
       final results =
           data[MovieApiRestConstants.results] as List<dynamic>? ?? [];
 
@@ -104,9 +97,7 @@ class MovieApiRest implements IMovieApi {
 
       return Success(movies);
     } catch (e) {
-      return Failure(
-        ServerError(message: e.toString(), type: ServerErrorType.unknown),
-      );
+      return Failure(ServerError(message: e.toString()));
     }
   }
 }

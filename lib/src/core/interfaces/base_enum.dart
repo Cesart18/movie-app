@@ -1,13 +1,15 @@
-// Base para enums con valores asociados
-// Permite crear enums que tengan un valor string/int asociado para serialización/deserialización
+// Base for enums with associated values
+// Allows creating enums with an associated string/int value for serialization/deserialization
+
+// ignore_for_file: one_member_abstracts
 
 /// {@template base_enum}
-/// Clase base para enums con valores asociados y mapeo a entidades de dominio.
+/// Base class for enums with associated values and mapping to domain entities.
 ///
-/// [E] es el tipo de entidad de dominio a la que se mapea
-/// [V] es el tipo de valor (String, int, etc.) que viene del API
+/// [E] is the domain entity type the enum maps to
+/// [V] is the value type (String, int, etc.) provided by the API
 ///
-/// Ejemplo de uso:
+/// Usage example:
 /// ```dart
 /// enum TimeWindowTypeModel implements BaseEnum<TimeWindowType, String> {
 ///   day('day'),
@@ -29,23 +31,24 @@
 ///   }
 ///
 ///   static TimeWindowTypeModel? fromValue(String value) {
-///     return TimeWindowTypeModel.values.cast<BaseEnum<TimeWindowType, String>>()
+///     return TimeWindowTypeModel.values.cast<BaseEnum<TimeWindowType,
+///     String>>()
 ///         .findByValue(value) as TimeWindowTypeModel?;
 ///   }
 /// }
 /// ```
 /// {@endtemplate}
 abstract class BaseEnum<E, V> {
-  /// El valor asociado al enum (puede ser String, int, etc.)
+  /// Associated enum value (String, int, etc.)
   V get value;
 
-  /// Convierte el enum del modelo a la entidad de dominio
+  /// Converts the model enum to the domain entity
   E toEntity();
 }
 
-/// Extension para facilitar la búsqueda de enums por valor
+/// Extension to ease searching enums by value
 extension BaseEnumExtension<E, V> on Iterable<BaseEnum<E, V>> {
-  /// Busca el enum que tenga el [value] especificado
+  /// Finds the enum with the specified [value]
   BaseEnum<E, V>? findByValue(V value) {
     try {
       return firstWhere((e) => e.value == value);
@@ -54,15 +57,15 @@ extension BaseEnumExtension<E, V> on Iterable<BaseEnum<E, V>> {
     }
   }
 
-  /// Convierte una lista de enums a lista de entidades
+  /// Converts a list of enums to a list of entities
   List<E> toEntities() {
     return map((e) => e.toEntity()).toList();
   }
 }
 
-/// Mixin para facilitar la conversión desde valores
+/// Mixin to simplify converting from values
 ///
-/// Ejemplo de uso:
+/// Usage example:
 /// ```dart
 /// enum StatusModel with BaseEnumMixin<Status, String>
 ///     implements BaseEnum<Status, String> {

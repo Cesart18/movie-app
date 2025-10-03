@@ -22,7 +22,7 @@ class _SplashBodyState extends State<_SplashBody> {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [ColorValues.bgPrimary(context), Color(0xFF780606)],
+          colors: [ColorValues.bgPrimary(context), const Color(0xFF780606)],
         ),
       ),
       child: Center(

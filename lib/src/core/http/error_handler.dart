@@ -1,13 +1,15 @@
+// ignore_for_file: strict_raw_type
+
 import 'package:dio/dio.dart';
-import 'package:movie_app/src/core/errors/infrastructure/server_error.dart';
+import 'package:movie_app/src/core/foundation.dart';
 
 /// {@template error_handler}
-/// Maneja la conversión de errores de Dio a ServerError
+/// Handles converting Dio errors to ServerError
 /// {@endtemplate}
 class ErrorHandler {
   const ErrorHandler();
 
-  /// Convierte un DioException a ServerError
+  /// Converts a DioException to a ServerError
   ServerError handle(DioException exception) {
     return switch (exception.type) {
       DioExceptionType.connectionTimeout ||
@@ -37,7 +39,7 @@ class ErrorHandler {
 
   ServerError _badResponseError(Response? response) {
     final statusCode = response?.statusCode;
-    final message = _extractMessage(response?.data);
+    final message = _extractMessage(response?.data as DataMap? ?? {});
 
     return switch (statusCode) {
       400 => ServerError(
@@ -61,7 +63,6 @@ class ErrorHandler {
         message: message ?? 'Error del servidor',
       ),
       _ => ServerError(
-        type: ServerErrorType.unknown,
         statusCode: statusCode,
         message: message ?? 'Error desconocido',
       ),
@@ -69,10 +70,7 @@ class ErrorHandler {
   }
 
   ServerError _cancelError() {
-    return const ServerError(
-      type: ServerErrorType.unknown,
-      message: 'Solicitud cancelada',
-    );
+    return const ServerError(message: 'Solicitud cancelada');
   }
 
   ServerError _certificateError() {
@@ -83,21 +81,16 @@ class ErrorHandler {
   }
 
   ServerError _unknownError(String? message) {
-    return ServerError(
-      type: ServerErrorType.unknown,
-      message: message ?? 'Error desconocido',
-    );
+    return ServerError(message: message ?? 'Error desconocido');
   }
 
-  String? _extractMessage(dynamic data) {
+  String? _extractMessage(DataMap data) {
     return switch (data) {
-      final Map map =>
-        map['message'] ??
-            map['error'] ??
-            map['detail'] ??
-            map['error_description'],
-      final String text => text,
-      _ => null,
+      final DataMap map =>
+        map['message'] as String? ??
+            map['error'] as String? ??
+            map['detail'] as String? ??
+            map['error_description'] as String?,
     };
   }
 }

@@ -1,7 +1,7 @@
-export 'movie.dart';
+export 'enums/enums.dart';
 export 'genre.dart';
 export 'language.dart';
-export 'video.dart';
+export 'movie.dart';
 export 'movie_details.dart';
 export 'params/params.dart';
-export 'enums/enums.dart';
+export 'video.dart';

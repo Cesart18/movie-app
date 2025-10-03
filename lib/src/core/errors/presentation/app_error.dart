@@ -1,21 +1,15 @@
-import 'package:movie_app/src/core/foundation.dart';
 import 'package:movie_app/src/core/errors/infrastructure/server_error.dart'
     as infra;
+import 'package:movie_app/src/core/foundation.dart';
 
 /// {@template app_error}
-/// Error de presentación que se muestra en la UI.
-/// Contiene un mensaje amigable para el usuario.
+/// Presentation-layer error shown in the UI.
+/// Holds a user-friendly message.
 /// {@endtemplate}
 sealed class AppError extends BaseError {
   const AppError({required this.message, this.title});
 
-  /// Mensaje de error para mostrar al usuario
-  final String message;
-
-  /// Título opcional del error
-  final String? title;
-
-  /// Factory constructor que convierte un [infra.ServerError] a [AppError]
+  /// Factory constructor that converts an [infra.ServerError] to an [AppError]
   factory AppError.fromServerError(infra.ServerError error) {
     switch (error.type) {
       case infra.ServerErrorType.network:
@@ -50,9 +44,15 @@ sealed class AppError extends BaseError {
         );
     }
   }
+
+  /// Error message to display to the user
+  final String message;
+
+  /// Optional error title
+  final String? title;
 }
 
-/// Error de red/conexión
+/// Network/connection error
 class NetworkError extends AppError {
   const NetworkError({
     super.title = 'Error de conexión',
@@ -61,7 +61,7 @@ class NetworkError extends AppError {
   });
 }
 
-/// Error de timeout
+/// Timeout error
 class TimeoutError extends AppError {
   const TimeoutError({
     super.title = 'Tiempo agotado',
@@ -69,7 +69,7 @@ class TimeoutError extends AppError {
   });
 }
 
-/// Error de servidor (500, 502, 503, etc.)
+/// Server error (500, 502, 503, etc.)
 class InternalServerError extends AppError {
   const InternalServerError({
     super.title = 'Error del servidor',
@@ -77,7 +77,7 @@ class InternalServerError extends AppError {
   });
 }
 
-/// Error de no autorizado (401)
+/// Unauthorized error (401)
 class UnauthorizedError extends AppError {
   const UnauthorizedError({
     super.title = 'No autorizado',
@@ -85,7 +85,7 @@ class UnauthorizedError extends AppError {
   });
 }
 
-/// Error de recurso no encontrado (404)
+/// Resource not found error (404)
 class NotFoundError extends AppError {
   const NotFoundError({
     super.title = 'No encontrado',
@@ -93,7 +93,7 @@ class NotFoundError extends AppError {
   });
 }
 
-/// Error de validación/datos incorrectos (400)
+/// Validation/invalid data error (400)
 class ValidationError extends AppError {
   const ValidationError({
     super.title = 'Error de validación',
@@ -101,7 +101,7 @@ class ValidationError extends AppError {
   });
 }
 
-/// Error genérico/desconocido
+/// Generic/unknown error
 class UnknownError extends AppError {
   const UnknownError({
     super.title = 'Error inesperado',

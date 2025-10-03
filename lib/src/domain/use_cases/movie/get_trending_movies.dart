@@ -8,10 +8,10 @@ class GetTrendingMoviesUseCase
           Result<List<Movie>, AppError>,
           GetTrendingMoviesParams
         > {
-  final IMovieRepository _movieRepository;
-
   GetTrendingMoviesUseCase({required IMovieRepository movieRepository})
     : _movieRepository = movieRepository;
+
+  final IMovieRepository _movieRepository;
 
   @override
   Future<Result<List<Movie>, AppError>> execute(

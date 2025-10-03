@@ -1,33 +1,33 @@
-// Adapter para el paquete skeletonizer
-// Provee widgets básicos para mostrar skeletons/placeholders mientras se cargan datos
+// Adapter for the skeletonizer package
+// Provides basic widgets to display skeletons/placeholders while data loads
 
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 /// {@template skeleton_container}
-/// Contenedor básico de skeleton con dimensiones configurables.
-/// Usa el paquete skeletonizer internamente para mostrar un placeholder animado.
+/// Basic skeleton container with configurable dimensions.
+/// Uses the skeletonizer package internally to display an animated placeholder.
 /// {@endtemplate}
 class SkeletonContainer extends StatelessWidget {
   /// {@macro skeleton_container}
   const SkeletonContainer({
-    super.key,
     required this.width,
     required this.height,
     this.borderRadius,
     this.enabled = true,
+    super.key,
   });
 
-  /// Ancho del contenedor skeleton
+  /// Skeleton container width
   final double width;
 
-  /// Alto del contenedor skeleton
+  /// Skeleton container height
   final double height;
 
-  /// Radio de borde opcional (por defecto 8.0)
+  /// Optional border radius (defaults to 8.0)
   final double? borderRadius;
 
-  /// Si está habilitado el skeleton (por defecto true)
+  /// Whether the skeleton is enabled (defaults to true)
   final bool enabled;
 
   @override
@@ -47,8 +47,8 @@ class SkeletonContainer extends StatelessWidget {
 }
 
 /// {@template skeleton_text}
-/// Widget de texto skeleton con ancho configurable.
-/// Muestra una línea de skeleton para representar texto.
+/// Skeleton text widget with configurable width.
+/// Displays a skeleton line to represent text.
 /// {@endtemplate}
 class SkeletonText extends StatelessWidget {
   /// {@macro skeleton_text}
@@ -60,16 +60,16 @@ class SkeletonText extends StatelessWidget {
     this.enabled = true,
   });
 
-  /// Ancho del texto skeleton
+  /// Skeleton text width
   final double width;
 
-  /// Alto del texto skeleton (por defecto 14)
+  /// Skeleton text height (defaults to 14)
   final double height;
 
-  /// Radio de borde opcional (por defecto 4.0)
+  /// Optional border radius (defaults to 4.0)
   final double? borderRadius;
 
-  /// Si está habilitado el skeleton
+  /// Whether the skeleton is enabled
   final bool enabled;
 
   @override
@@ -89,16 +89,16 @@ class SkeletonText extends StatelessWidget {
 }
 
 /// {@template skeleton_avatar}
-/// Avatar circular skeleton.
+/// Circular skeleton avatar.
 /// {@endtemplate}
 class SkeletonAvatar extends StatelessWidget {
   /// {@macro skeleton_avatar}
   const SkeletonAvatar({super.key, this.size = 40, this.enabled = true});
 
-  /// Tamaño del avatar (diámetro)
+  /// Avatar size (diameter)
   final double size;
 
-  /// Si está habilitado el skeleton
+  /// Whether the skeleton is enabled
   final bool enabled;
 
   @override
@@ -118,8 +118,8 @@ class SkeletonAvatar extends StatelessWidget {
 }
 
 /// {@template skeleton_card}
-/// Card skeleton completo con imagen y líneas de texto.
-/// Útil para listas de movies, products, etc.
+/// Full skeleton card with image and text lines.
+/// Useful for movie lists, product lists, etc.
 /// {@endtemplate}
 class SkeletonCard extends StatelessWidget {
   /// {@macro skeleton_card}
@@ -131,16 +131,16 @@ class SkeletonCard extends StatelessWidget {
     this.enabled = true,
   });
 
-  /// Ancho de la imagen del skeleton
+  /// Skeleton image width
   final double imageWidth;
 
-  /// Alto de la imagen del skeleton
+  /// Skeleton image height
   final double imageHeight;
 
-  /// Si muestra subtítulo (línea secundaria de texto)
+  /// Whether a subtitle line is shown
   final bool showSubtitle;
 
-  /// Si está habilitado el skeleton
+  /// Whether the skeleton is enabled
   final bool enabled;
 
   @override
@@ -151,7 +151,7 @@ class SkeletonCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Imagen skeleton
+          // Skeleton image
           Container(
             width: imageWidth,
             height: imageHeight,
@@ -161,7 +161,7 @@ class SkeletonCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          // Título skeleton
+          // Skeleton title
           Container(
             width: imageWidth * 0.8,
             height: 16,
@@ -172,7 +172,7 @@ class SkeletonCard extends StatelessWidget {
           ),
           if (showSubtitle) ...[
             const SizedBox(height: 6),
-            // Subtítulo skeleton
+            // Skeleton subtitle
             Container(
               width: imageWidth * 0.6,
               height: 12,
