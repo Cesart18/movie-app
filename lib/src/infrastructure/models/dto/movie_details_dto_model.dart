@@ -16,26 +16,33 @@ class MovieDetailsDtoModel extends MovieDetails {
     required super.genres,
   });
 
-  factory MovieDetailsDtoModel.fromMap(DataMap map) => MovieDetailsDtoModel(
-    id: map['id'] as int? ?? 0,
-    title: map['title'] as String? ?? '',
-    overview: map['overview'] as String? ?? '',
-    posterPath: map['poster_path'] as String? ?? '',
-    backdropPath: map['backdrop_path'] as String? ?? '',
-    releaseDate: map['release_date'] as String? ?? '',
-    voteAverage: (map['vote_average'] as num?)?.toDouble() ?? 0.0,
-    voteCount: map['vote_count'] as int? ?? 0,
-    spokenLanguages:
-        (map['spoken_languages'] as List<dynamic>?)
-            ?.map((e) => LanguageDtoModel.fromMap(e as DataMap))
-            .toList() ??
-        [],
-    genres:
-        (map['genres'] as List<dynamic>?)
-            ?.map((e) => GenreDtoModel.fromMap(e as DataMap))
-            .toList() ??
-        [],
-  );
+  factory MovieDetailsDtoModel.fromMap(DataMap map) {
+    final posterPath = map['poster_path'] as String? ?? '';
+    final backdropPath = map['backdrop_path'] as String? ?? '';
+
+    return MovieDetailsDtoModel(
+      id: map['id'] as int? ?? 0,
+      title: map['title'] as String? ?? '',
+      overview: map['overview'] as String? ?? '',
+      posterPath:
+          '${EnvValues.imageBaseUrl}/${Constants.defaultImageSize}/$posterPath',
+      backdropPath:
+          '${EnvValues.imageBaseUrl}/${Constants.defaultImageSize}/$backdropPath',
+      releaseDate: map['release_date'] as String? ?? '',
+      voteAverage: (map['vote_average'] as num?)?.toDouble() ?? 0.0,
+      voteCount: map['vote_count'] as int? ?? 0,
+      spokenLanguages:
+          (map['spoken_languages'] as List<dynamic>?)
+              ?.map((e) => LanguageDtoModel.fromMap(e as DataMap))
+              .toList() ??
+          [],
+      genres:
+          (map['genres'] as List<dynamic>?)
+              ?.map((e) => GenreDtoModel.fromMap(e as DataMap))
+              .toList() ??
+          [],
+    );
+  }
 
   DataMap toJson() => {
     'id': id,

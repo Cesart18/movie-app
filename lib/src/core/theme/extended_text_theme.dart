@@ -49,14 +49,14 @@ extension ExtendedTextTheme on TextTheme {
   static TextStyle textExtraLarge(BuildContext context) =>
       TextValues.fontFamilyStyle(
         fontSize: TextValues.textXl,
-        fontWeight: TextValues.regular,
+        fontWeight: TextValues.semibold,
         color: ColorValues.textPrimary(context),
       );
 
   static TextStyle textLarge(BuildContext context) =>
       TextValues.fontFamilyStyle(
         fontSize: TextValues.textLg,
-        fontWeight: TextValues.regular,
+        fontWeight: TextValues.semibold,
         color: ColorValues.textPrimary(context),
       );
 

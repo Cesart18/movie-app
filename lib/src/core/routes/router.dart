@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movie_app/src/presentation/home/home.dart';
 import 'package:movie_app/src/presentation/splash/splash.dart';
 
 /// {@template app_router}
@@ -16,17 +17,29 @@ class AppRouter {
     debugLabel: 'root_scaffold',
   );
 
-  /// The root router for the app. Set [debug] to true to enable debug logging
-  /// diagnostics.
-  static GoRouter router({bool debug = false}) => GoRouter(
+  static GoRouter router = GoRouter(
     navigatorKey: rootNavigatorKey,
-    debugLogDiagnostics: debug,
     initialLocation: SplashPage.path,
     routes: [
       GoRoute(
         name: SplashPage.routeName,
         path: SplashPage.path,
         builder: (context, state) => const SplashPage(),
+      ),
+
+      GoRoute(
+        name: HomePage.routeName,
+        path: HomePage.path,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: const HomePage(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+          );
+        },
       ),
     ],
   );

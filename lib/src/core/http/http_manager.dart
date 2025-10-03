@@ -1,6 +1,7 @@
 // ignore_for_file: only_throw_errors
 
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:movie_app/src/core/http/error_handler.dart';
 import 'package:movie_app/src/core/http/http_config.dart';
 
@@ -12,7 +13,9 @@ class HttpManager {
   /// {@macro http_manager}
   HttpManager(HttpConfig config, {ErrorHandler? errorHandler})
     : _dio = Dio(config.toBaseOptions()),
-      _errorHandler = errorHandler ?? const ErrorHandler();
+      _errorHandler = errorHandler ?? const ErrorHandler() {
+    _initCache();
+  }
 
   /// Alternative constructor with basic parameters
   factory HttpManager.simple({
@@ -37,6 +40,15 @@ class HttpManager {
 
   /// Dio instance (public access for advanced scenarios)
   Dio get dio => _dio;
+
+  Future<void> _initCache() async {
+    final cacheOptions = CacheOptions(
+      store: MemCacheStore(),
+      maxStale: const Duration(days: 1),
+    );
+
+    _dio.interceptors.add(DioCacheInterceptor(options: cacheOptions));
+  }
 
   /// Executes an HTTP request safely
   Future<Response<T>> _execute<T>(
